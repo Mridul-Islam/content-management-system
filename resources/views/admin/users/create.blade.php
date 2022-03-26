@@ -33,7 +33,7 @@
             {!! Form::select('is_active', [''=>'Choose Option..', 1=>'Active', 0=>'In-Active'], null, ['class'=>'form-control']) !!}
         </div>
         <div>
-            {!! Form::label('photo)_id', 'Image: ') !!}
+            {!! Form::label('photo)_id', 'Upload Image: ') !!}
             {!! Form::file('photo_id', ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2022 at 11:31 AM
+-- Generation Time: Mar 26, 2022 at 06:04 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `cms-laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'PHP', '2022-03-25 22:48:59', '2022-03-25 22:48:59'),
+(2, 'Laravel', '2022-03-25 22:49:05', '2022-03-25 22:49:05'),
+(3, 'JavaScript', '2022-03-25 22:49:14', '2022-03-25 22:49:14'),
+(4, 'Vue.js', '2022-03-25 22:49:23', '2022-03-25 22:49:23');
 
 -- --------------------------------------------------------
 
@@ -60,7 +83,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (9, '2022_03_13_084323_create_roles_table', 1),
 (10, '2022_03_16_164720_add_photo_id_to_users_table', 2),
-(11, '2022_03_17_045340_create_photos_table', 3);
+(11, '2022_03_17_045340_create_photos_table', 3),
+(12, '2022_03_21_045153_create_posts_table', 4),
+(13, '2022_03_26_044545_create_categories_table', 5);
 
 -- --------------------------------------------------------
 
@@ -116,7 +141,37 @@ INSERT INTO `photos` (`id`, `image`, `created_at`, `updated_at`) VALUES
 (14, '1647583242DSCN1918.JPG', '2022-03-18 00:00:42', '2022-03-18 00:00:42'),
 (15, '1647583308dhaka-city.jpg', '2022-03-18 00:01:48', '2022-03-18 00:01:48'),
 (16, '1647595946green-bangladesh.jpg', '2022-03-18 03:32:26', '2022-03-18 03:32:26'),
-(19, '1647596852silver rolls-royce.jpg', '2022-03-18 03:47:32', '2022-03-18 03:47:32');
+(19, '1647596852silver rolls-royce.jpg', '2022-03-18 03:47:32', '2022-03-18 03:47:32'),
+(20, 'Black audi.jpg', '2022-03-23 23:22:25', '2022-03-23 23:22:25'),
+(21, 'Black audi.jpg', '2022-03-23 23:24:15', '2022-03-23 23:24:15'),
+(22, '1648270486Kashmir.jpg', '2022-03-25 22:54:46', '2022-03-25 22:54:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
+  `photo_id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_id`, `category_id`, `photo_id`, `title`, `body`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 14, 'inventory management system', 'This is an inventory management system', '2022-03-20 23:18:21', '2022-03-20 23:18:21'),
+(2, 2, 1, 16, 'school management system', 'This is a school management system', '2022-03-20 23:19:00', '2022-03-20 23:19:00'),
+(3, 1, 1, 21, 'Inventory management system', 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available', '2022-03-23 23:24:15', '2022-03-23 23:24:15'),
+(4, 1, 4, 22, 'The independent Kashmir', 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.', '2022-03-25 22:54:46', '2022-03-25 22:54:46');
 
 -- --------------------------------------------------------
 
@@ -176,6 +231,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `role_id`, `is_active`, `email_verif
 --
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -209,6 +270,15 @@ ALTER TABLE `photos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `posts_user_id_index` (`user_id`),
+  ADD KEY `posts_category_id_index` (`category_id`),
+  ADD KEY `posts_photo_id_index` (`photo_id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -227,6 +297,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -236,7 +312,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -248,7 +324,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`
