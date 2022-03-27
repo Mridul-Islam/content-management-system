@@ -10,6 +10,12 @@
         @if(Session::has('created_post'))
             <p class="bg-success text-center"> {{ session('created_post') }} </p>
         @endif
+        @if(Session::has('post_updated'))
+            <p class="bg-success text-center"> {{ session('post_updated') }} </p>
+        @endif
+        @if(Session::has('post_deleted'))
+            <p class="bg-success text-center"> {{ session('post_deleted') }} </p>
+        @endif
 
         <table class="table table-responsive table-hover table-bordered table-striped">
             <thead>
@@ -37,8 +43,13 @@
                     <td><img src="{{ $post->photo_id? $post->photo->image: "image-placeholder.png" }}" alt="post-image" height="80px" width="120px" /></td>
                     <td>{{ $post->created_at->diffForHumans() }}</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
-                    <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                    <td><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a></td>
+                    <!-- Delete form -->
+                    <td>
+                        {!! Form::open(['method'=>'DELETE', 'route'=>['posts.destroy', $post->id]]) !!}
+                            {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                        {!! Form::close() !!}
+                    </td>
                 </tr>
             @endforeach
             </tbody>
