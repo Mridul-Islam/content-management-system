@@ -37,7 +37,7 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->user->name }}</td>
-                    <td>{{ $post->category->name }}</td>
+                    <td>{{ $post->category_id ? $post->category->name: 'Un-categorised' }}</td>
                     <td>{{ $post->title }}</td>
                     <td>{{ Str::limit($post->body, 30) }}</td>
                     <td><img src="{{ $post->photo_id? $post->photo->image: "image-placeholder.png" }}" alt="post-image" height="80px" width="120px" /></td>
