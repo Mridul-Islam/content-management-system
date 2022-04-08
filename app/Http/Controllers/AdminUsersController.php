@@ -15,7 +15,7 @@ class AdminUsersController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::all()->sortDesc();
         return view('admin.users.index', compact('users'));
     }
 
@@ -78,8 +78,10 @@ class AdminUsersController extends Controller
         $input = $request->all();
         if($file = $request->file('photo_id')){
             //delete existing photo
-            unlink(public_path() . $user->photo->image);
-            $user->photo()->delete();
+            if($user->photo_id){
+                unlink(public_path() . $user->photo->image);
+                $user->photo()->delete();
+            }
             // new photo info
             $name = time() . $file->getClientOriginalName();
             $file->move("images", $name);

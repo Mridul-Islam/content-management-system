@@ -17,7 +17,8 @@
                     <th>Id</th>
                     <th>Image</th>
                     <th>Created At</th>
-                    <th>Delete</th>
+                    <th>Owner type</th>
+                    <th>Owner Id</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,11 +27,11 @@
                     <td>{{ $photo->id }}</td>
                     <td><img src="{{ $photo->image }}" alt="" width="180px" height="120px"></td>
                     <td>{{ $photo->created_at->diffForHumans() }}</td>
-                    <td>
-                        {!! Form::open(['method'=>'DELETE', 'route'=> ['media.destroy', $photo->id]]) !!}
-                            {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
-                        {!! Form::close() !!}
-                    </td>
+{{--                    <td>--}}
+{{--                        {!! Form::open(['method'=>'DELETE', 'route'=> ['media.destroy', $photo->id]]) !!}--}}
+{{--                            {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}--}}
+{{--                        {!! Form::close() !!}--}}
+{{--                    </td>--}}
                 </tr>
             @endforeach
             </tbody>

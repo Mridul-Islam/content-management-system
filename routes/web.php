@@ -4,7 +4,9 @@ use App\Http\Controllers\AdminCategoriesController;
 use App\Http\Controllers\AdminMediasController;
 use App\Http\Controllers\AdminPostsController;
 use App\Http\Controllers\AdminUsersController;
+use App\Http\Controllers\CommentRepliesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostCommentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,10 @@ Route::group(['middleware'=>'admin'], function (){
     Route::resource('/admin/categories', AdminCategoriesController::class);
 
     Route::resource('/admin/media', AdminMediasController::class);
+
+    Route::resource('/admin/comments', PostCommentsController::class);
+
+    Route::resource('/admin/comment/replies', CommentRepliesController::class);
 
 });
 

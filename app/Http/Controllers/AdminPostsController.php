@@ -67,8 +67,10 @@ class AdminPostsController extends Controller
         $input = $request->all();
         if($file = $request->file('photo_id')){
             //delete previous files
-            $post->photo->delete();
-            unlink(public_path() . $post->photo->image);
+            if($post->photo_id){
+                $post->photo->delete();
+                unlink(public_path() . $post->photo->image);
+            }
             //add new files
             $name = time() . $file->getClientOriginalName();
             $file->move('images', $name);

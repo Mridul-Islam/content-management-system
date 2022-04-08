@@ -37,10 +37,10 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->user->name }}</td>
-                    <td>{{ $post->category_id ? $post->category->name: 'Un-categorised' }}</td>
+                    <td>{{ $post->category_id ? $post->category->name: 'Un-categorized' }}</td>
                     <td>{{ $post->title }}</td>
                     <td>{{ Str::limit($post->body, 30) }}</td>
-                    <td><img src="{{ $post->photo_id? $post->photo->image: "image-placeholder.png" }}" alt="post-image" height="80px" width="120px" /></td>
+                    <td><img src="{{ $post->photo_id? $post->photo->image: "/images/image-placeholder.png" }}" alt="post-image" height="80px" width="120px" /></td>
                     <td>{{ $post->created_at->diffForHumans() }}</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a></td>

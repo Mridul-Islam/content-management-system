@@ -38,7 +38,7 @@
                 <td><img src="{{ $user->photo_id ? $user->photo->image : '/images/user-logo.png' }}" width="120px" height="80px" /></td>
                 <td> {{ $user->name  }} </td>
                 <td> {{ $user->email }} </td>
-                <td> {{ $user->role->name }} </td>
+                <td> {{ $user->role_id ? $user->role->name: 'Role not set yet' }} </td>
 
                 <!-- Show user status using is-active condition -->
                 <td> {{ $user->is_active == 1? 'active' : 'in-active' }} </td>

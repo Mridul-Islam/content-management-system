@@ -58,6 +58,11 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        $posts = Post::whereCategoryId($id)->get();
+        foreach ($posts as $post){
+            $post->category_id = null;
+            $post->save();
+        }
         $category->delete();
         Session::flash('category_deleted', 'The Category has been deleted successfully..');
         return redirect('/admin/categories');

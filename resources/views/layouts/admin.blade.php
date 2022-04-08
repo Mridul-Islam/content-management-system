@@ -88,62 +88,81 @@
 {{--                        </div>--}}
 {{--                        <!-- /input-group -->--}}
 {{--                    </li>--}}
-                    <li>
-                        <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                    </li>
 
-                    <li>
-                        <a href="#"><i class="fa fa-users fa-fw"></i>Users<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                    @if(!Auth::user()->role_id)
+                        <li>
+                            <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                    @endif
+
+                    @if(Auth::user()->role_id)
+                        @if(Auth::user()->role->name !== 'Administrator')
                             <li>
-                                <a href="{{ route('users.index') }}">All Users</a>
+                                <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                        @else
+                            <li>
+                                <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
 
                             <li>
-                                <a href="{{ route('users.create') }}">Create User</a>
+                                <a href="#"><i class="fa fa-users fa-fw"></i>Users<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ route('users.index') }}">All Users</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('users.create') }}">Create User</a>
+                                    </li>
+
+                                </ul>
+                                <!-- /.nav-second-level -->
                             </li>
 
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('posts.index') }}">All Posts</a>
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ route('posts.index') }}">All Posts</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('posts.create') }}">Create Post</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('comments.index') }}">All Comments</a>
+                                    </li>
+
+                                </ul>
+                                <!-- /.nav-second-level -->
                             </li>
+
 
                             <li>
-                                <a href="{{ route('posts.create') }}">Create Post</a>
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ route('categories.index') }}">All Categories</a>
+                                    </li>
+
+                                </ul>
+                                <!-- /.nav-second-level -->
                             </li>
 
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
 
-
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
                             <li>
-                                <a href="{{ route('categories.index') }}">All Categories</a>
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ route('media.index') }}">All Photos</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
                             </li>
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{ route('media.index') }}">All Photos</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+                        @endif
+                    @endif
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -155,38 +174,38 @@
 
 
 
-    <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-                <li>
-                    <a href="/profile"><i class="fa fa-dashboard fa-fw"></i>Profile</a>
-                </li>
+{{--    <div class="navbar-default sidebar" role="navigation">--}}
+{{--        <div class="sidebar-nav navbar-collapse">--}}
+{{--            <ul class="nav" id="side-menu">--}}
+{{--                <li>--}}
+{{--                    <a href="/profile"><i class="fa fa-dashboard fa-fw"></i>Profile</a>--}}
+{{--                </li>--}}
 
 
 
 
-                <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="">All Posts</a>
-                        </li>
+{{--                <li>--}}
+{{--                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>--}}
+{{--                    <ul class="nav nav-second-level">--}}
+{{--                        <li>--}}
+{{--                            <a href="">All Posts</a>--}}
+{{--                        </li>--}}
 
-                        <li>
-                            <a href="">Create Post</a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="">Create Post</a>--}}
+{{--                        </li>--}}
 
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-
-
+{{--                    </ul>--}}
+{{--                    <!-- /.nav-second-level -->--}}
+{{--                </li>--}}
 
 
 
-            </ul>
 
-        </div>
+
+{{--            </ul>--}}
+
+{{--        </div>--}}
 
     </div>
 

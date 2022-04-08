@@ -11,8 +11,8 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/admin';
+    protected $redirectTo = RouteServiceProvider::ADMINHOME;
+    //protected $redirectTo = '/admin';
 
     public function __construct()
     {
